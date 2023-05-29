@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="ASCII">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryptor</title>
+</head>
+
+<body>
+    <div style="display: grid; "><textarea id="text" cols="30" rows="10"></textarea><span>
+            <input    inputmode="numeric" type="number" id="key" placeholder="KEY" maxlength="5" oninput="$('#text').oninput()"> 
+            <select id="enc-dec" oninput="$('#text').oninput()">
+                <option value="1">Encrypt</option>
+                <option value="-1">Decrypt</option>
+            </select></span></div>
+    <div style="padding: 5px; "></div>
+
+    <script>
+        let $ = (elem, i = 0) => { return document.querySelectorAll(elem)[i] }
+        $('#text').oninput= e => {
+            let x = parseInt($('#key').value)
+            let str = $('#text').value
+            $('div', 1).innerHTML = 'Encrypted String :<br>'
+            for (let i = 0; i < str.length; i++) { $('div', 1).innerText += String.fromCharCode(str.charCodeAt(i) + x * parseInt($('select').value)) }
+        }
+    </script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</body>
+
+</html>
